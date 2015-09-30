@@ -29,9 +29,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+__BEGIN_DECLS
 
 /*
  * Standard flags codes.
@@ -383,8 +381,6 @@ void *uu_avl_teardown(uu_avl_t *, void **);
 
 void uu_avl_remove(uu_avl_t *, void *);
 
-#ifdef	__cplusplus
-}
-#endif
+__END_DECLS
 
 #endif	/* _LIBUUTIL_H */

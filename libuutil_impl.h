@@ -33,9 +33,7 @@
 #include <sys/avl_impl.h>
 #include <sys/byteorder.h>
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+__BEGIN_DECLS
 
 void uu_set_error(uint_t);
 #pragma rarely_called(uu_set_error)
@@ -172,8 +170,6 @@ void uu_avl_release(void);
 void uu_list_lockup(void);
 void uu_list_release(void);
 
-#ifdef	__cplusplus
-}
-#endif
+__END_DECLS
 
 #endif	/* _LIBUUTIL_IMPL_H */
