@@ -32,10 +32,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/debug.h>
-#include <thread.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <pthread_np.h>
 
 /*
  * All of the old code under !defined(PTHREAD_ONCE_KEY_NP)
@@ -67,7 +66,7 @@ static uint32_t		_uu_main_error;
 void
 uu_set_error(uint32_t code)
 {
-	if (thr_main() != 0) {
+	if (pthread_main_np() != 0) {
 		_uu_main_error = code;
 		return;
 	}
@@ -96,7 +95,7 @@ uu_set_error(uint32_t code)
 uint32_t
 uu_error(void)
 {
-	if (thr_main() != 0)
+	if (pthread_main_np() != 0)
 		return (_uu_main_error);
 
 	if (uu_error_key_setup < 0)	/* can't happen? */
@@ -152,13 +151,11 @@ uu_strerror(uint32_t code)
 		break;
 
 	case UU_ERROR_INVALID_CHAR:
-		str = dgettext(TEXT_DOMAIN,
-		    "Value contains unexpected character";
+		str = "Value contains unexpected character";
 		break;
 
 	case UU_ERROR_INVALID_DIGIT:
-		str = dgettext(TEXT_DOMAIN,
-		    "Value contains digit not in base";
+		str = "Value contains digit not in base";
 		break;
 
 	case UU_ERROR_SYSTEM:
@@ -199,14 +196,6 @@ uu_panic(const char *format, ...)
 	else
 		for (;;)
 			(void) pause();
-}
-
-int
-assfail(const char *astring, const char *file, int line)
-{
-	__assert(astring, file, line);
-	/*NOTREACHED*/
-	return (0);
 }
 
 static void

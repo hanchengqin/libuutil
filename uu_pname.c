@@ -26,7 +26,6 @@
 
 #include "libuutil_common.h"
 
-#include <libintl.h>
 #include <limits.h>
 #include <string.h>
 #include <stdlib.h>
@@ -35,6 +34,7 @@
 #include <errno.h>
 #include <wchar.h>
 #include <unistd.h>
+#include <sys/sysctl.h>
 
 static const char PNAME_FMT[] = "%s: ";
 static const char ERRNO_FMT[] = ": %s\n";
@@ -42,7 +42,7 @@ static const char ERRNO_FMT[] = ": %s\n";
 static const char *pname;
 
 static void
-uu_die_internal(int status, const char *format, va_list alist) __NORETURN;
+uu_die_internal(int status, const char *format, va_list alist) __dead2;
 
 int uu_exit_ok_value = EXIT_SUCCESS;
 int uu_exit_fatal_value = EXIT_FAILURE;
@@ -170,9 +170,19 @@ uu_setpname(char *arg0)
 	 * than in each of its consumers.
 	 */
 	if (arg0 == NULL) {
-		pname = getexecname();
-		if (pname == NULL)
+		size_t len = PATH_MAX + 1;
+		char *ppath = calloc (len, sizeof(char));
+		int mib[4];
+		mib[0] = CTL_KERN;
+		mib[1] = KERN_PROC;
+		mib[2] = KERN_PROC_PATHNAME;
+		mib[3] = -1;
+		if (sysctl(mib, 4, &ppath, &len, NULL, 0) == 0) {
+			pname = ppath;
+		} else {
+			free (ppath);
 			pname = "unknown_command";
+		}
 		return (pname);
 	}
 

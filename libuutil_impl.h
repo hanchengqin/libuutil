@@ -27,15 +27,19 @@
 #ifndef	_LIBUUTIL_IMPL_H
 #define	_LIBUUTIL_IMPL_H
 
-#include <libuutil.h>
+#include "libuutil.h"
 #include <pthread.h>
 
-#include <sys/avl_impl.h>
-#include <sys/byteorder.h>
+#include <avl/avl_impl.h>
+
+#define	BSWAP_8(x)	((x) & 0xff)
+#define	BSWAP_16(x)	((BSWAP_8(x) << 8) | BSWAP_8((x) >> 8))
+#define	BSWAP_32(x)	((BSWAP_16(x) << 16) | BSWAP_16((x) >> 16))
+#define	BSWAP_64(x)	((BSWAP_32(x) << 32) | BSWAP_32((x) >> 32))
 
 __BEGIN_DECLS
 
-void uu_set_error(uint_t);
+void uu_set_error(uint32_t);
 #pragma rarely_called(uu_set_error)
 
 /*PRINTFLIKE1*/
@@ -45,7 +49,7 @@ void uu_panic(const char *format, ...);
 struct uu_dprintf {
 	char	*uud_name;
 	uu_dprintf_severity_t uud_severity;
-	uint_t	uud_flags;
+	uint32_t uud_flags;
 };
 
 /*

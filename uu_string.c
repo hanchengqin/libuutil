@@ -30,26 +30,25 @@
 #include <string.h>
 #include <sys/types.h>
 #include <stdio.h>
-#include <malloc.h>
 #include <ctype.h>
 #include "libuutil.h"
 
 /* Return true if strings are equal */
-boolean_t
+bool
 uu_streq(const char *a, const char *b)
 {
 	return (strcmp(a, b) == 0);
 }
 
 /* Return true if strings are equal, case-insensitively */
-boolean_t
+bool
 uu_strcaseeq(const char *a, const char *b)
 {
 	return (strcasecmp(a, b) == 0);
 }
 
 /* Return true if string a Begins With string b */
-boolean_t
+bool
 uu_strbw(const char *a, const char *b)
 {
 	return (strncmp(a, b, strlen(b)) == 0);

@@ -33,6 +33,7 @@
 #include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #ifdef _LP64
 #define	TMPPATHFMT	"%s/uu%ld"
@@ -42,16 +43,22 @@
 
 /*ARGSUSED*/
 int
-uu_open_tmp(const char *dir, uint_t uflags)
+uu_open_tmp(const char *dir, uint32_t uflags)
 {
 	int f;
 	char *fname = uu_zalloc(PATH_MAX);
+	struct timespec drone;
+	uint64_t hrt;
 
 	if (fname == NULL)
 		return (-1);
 
 	for (;;) {
-		(void) snprintf(fname, PATH_MAX, "%s/uu%lld", dir, gethrtime());
+		if (clock_gettime (CLOCK_REALTIME, &drone) == 0)
+			hrt = drone.tv_sec * 1000000000 + drone.tv_nsec;
+		else
+			hrt = random();
+		(void) snprintf(fname, PATH_MAX, "%s/uu%lld", dir, hrt);
 
 		f = open(fname, O_CREAT | O_EXCL | O_RDWR, 0600);
 

@@ -15,7 +15,7 @@ SRCS=		uu_alloc.c \
 		uu_string.c \
 		uu_strtoint.c
 
-CFLAGS+=	-I${.CURDIR}/avl
+CFLAGS+=	-I${.CURDIR}
 
 VERSION_DEF=	${.CURDIR}/Versions.def
 SYMBOL_MAPS=	${.CURDIR}/mapfile-vers
