@@ -274,7 +274,7 @@ extern void avl_swap(avl_tree_t *tree1, avl_tree_t *tree2);
 /*
  * Return the number of nodes in the tree
  */
-extern ulong avl_numnodes(avl_tree_t *tree);
+extern u_long avl_numnodes(avl_tree_t *tree);
 
 /*
  * Return B_TRUE if there are zero nodes in the tree, B_FALSE otherwise.

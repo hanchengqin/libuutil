@@ -28,6 +28,9 @@
 
 #include <limits.h>
 #include <ctype.h>
+#ifdef __FreeBSD__
+#include <stdint.h>
+#endif
 
 #define	MAX_BASE	36
 

@@ -144,7 +144,7 @@ struct avl_tree {
 	struct avl_node *avl_root;	/* root node in tree */
 	int (*avl_compar)(const void *, const void *);
 	size_t avl_offset;		/* offsetof(type, avl_link_t field) */
-	ulong avl_numnodes;		/* number of nodes in the tree */
+	u_long avl_numnodes;		/* number of nodes in the tree */
 	size_t avl_size;		/* sizeof user type struct */
 };
 
