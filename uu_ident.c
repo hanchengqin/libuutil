@@ -71,7 +71,7 @@ is_valid_ident(const char *s, const char *e, int allowdot)
 }
 
 static int
-is_valid_component(const char *b, const char *e, uint_t flags)
+is_valid_component(const char *b, const char *e, uint32_t flags)
 {
 	char *sp;
 
@@ -88,7 +88,7 @@ is_valid_component(const char *b, const char *e, uint_t flags)
 }
 
 int
-uu_check_name(const char *name, uint_t flags)
+uu_check_name(const char *name, uint32_t flags)
 {
 	const char *end = name + strlen(name);
 	const char *p;

@@ -27,7 +27,6 @@
 
 #include <assert.h>
 #include <errno.h>
-#include <libintl.h>
 #include <pthread.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -37,10 +36,6 @@
 #include <thread.h>
 #include <unistd.h>
 #include <ctype.h>
-
-#if !defined(TEXT_DOMAIN)
-#define	TEXT_DOMAIN "SYS_TEST"
-#endif
 
 /*
  * All of the old code under !defined(PTHREAD_ONCE_KEY_NP)
@@ -70,7 +65,7 @@ static pthread_t	uu_panic_thread;
 static uint32_t		_uu_main_error;
 
 void
-uu_set_error(uint_t code)
+uu_set_error(uint32_t code)
 {
 	if (thr_main() != 0) {
 		_uu_main_error = code;
@@ -121,57 +116,57 @@ uu_strerror(uint32_t code)
 
 	switch (code) {
 	case UU_ERROR_NONE:
-		str = dgettext(TEXT_DOMAIN, "No error");
+		str = "No error";
 		break;
 
 	case UU_ERROR_INVALID_ARGUMENT:
-		str = dgettext(TEXT_DOMAIN, "Invalid argument");
+		str = "Invalid argument";
 		break;
 
 	case UU_ERROR_UNKNOWN_FLAG:
-		str = dgettext(TEXT_DOMAIN, "Unknown flag passed");
+		str = "Unknown flag passed";
 		break;
 
 	case UU_ERROR_NO_MEMORY:
-		str = dgettext(TEXT_DOMAIN, "Out of memory");
+		str = "Out of memory";
 		break;
 
 	case UU_ERROR_CALLBACK_FAILED:
-		str = dgettext(TEXT_DOMAIN, "Callback-initiated failure");
+		str = "Callback-initiated failure";
 		break;
 
 	case UU_ERROR_NOT_SUPPORTED:
-		str = dgettext(TEXT_DOMAIN, "Operation not supported");
+		str = "Operation not supported";
 		break;
 
 	case UU_ERROR_EMPTY:
-		str = dgettext(TEXT_DOMAIN, "No value provided");
+		str = "No value provided";
 		break;
 
 	case UU_ERROR_UNDERFLOW:
-		str = dgettext(TEXT_DOMAIN, "Value too small");
+		str = "Value too small";
 		break;
 
 	case UU_ERROR_OVERFLOW:
-		str = dgettext(TEXT_DOMAIN, "Value too large");
+		str = "Value too large";
 		break;
 
 	case UU_ERROR_INVALID_CHAR:
 		str = dgettext(TEXT_DOMAIN,
-		    "Value contains unexpected character");
+		    "Value contains unexpected character";
 		break;
 
 	case UU_ERROR_INVALID_DIGIT:
 		str = dgettext(TEXT_DOMAIN,
-		    "Value contains digit not in base");
+		    "Value contains digit not in base";
 		break;
 
 	case UU_ERROR_SYSTEM:
-		str = dgettext(TEXT_DOMAIN, "Underlying system error");
+		str = "Underlying system error";
 		break;
 
 	case UU_ERROR_UNKNOWN:
-		str = dgettext(TEXT_DOMAIN, "Error status not known");
+		str = "Error status not known";
 		break;
 
 	default:

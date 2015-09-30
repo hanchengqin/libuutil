@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/avl.h>
+#include <avl/avl.h>
 
 static uu_avl_pool_t	uu_null_apool = { &uu_null_apool, &uu_null_apool };
 static pthread_mutex_t	uu_apool_list_lock = PTHREAD_MUTEX_INITIALIZER;

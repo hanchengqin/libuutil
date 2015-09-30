@@ -27,42 +27,37 @@
 #include "libuutil_common.h"
 
 #include <errno.h>
-#include <libintl.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 
 #define	FACILITY_FMT	"%s (%s): "
-
-#if !defined(TEXT_DOMAIN)
-#define	TEXT_DOMAIN "SYS_TEST"
-#endif
 
 static const char *
 strseverity(uu_dprintf_severity_t severity)
 {
 	switch (severity) {
 	case UU_DPRINTF_SILENT:
-		return (dgettext(TEXT_DOMAIN, "silent"));
+		return ("silent");
 	case UU_DPRINTF_FATAL:
-		return (dgettext(TEXT_DOMAIN, "FATAL"));
+		return ("FATAL");
 	case UU_DPRINTF_WARNING:
-		return (dgettext(TEXT_DOMAIN, "WARNING"));
+		return ("WARNING");
 	case UU_DPRINTF_NOTICE:
-		return (dgettext(TEXT_DOMAIN, "note"));
+		return ("note");
 	case UU_DPRINTF_INFO:
-		return (dgettext(TEXT_DOMAIN, "info"));
+		return ("info");
 	case UU_DPRINTF_DEBUG:
-		return (dgettext(TEXT_DOMAIN, "debug"));
+		return ("debug");
 	default:
-		return (dgettext(TEXT_DOMAIN, "unspecified"));
+		return ("unspecified");
 	}
 }
 
 uu_dprintf_t *
 uu_dprintf_create(const char *name, uu_dprintf_severity_t severity,
-    uint_t flags)
+    uint32_t flags)
 {
 	uu_dprintf_t *D;
 

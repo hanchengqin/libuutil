@@ -109,7 +109,7 @@ uu_msprintf(const char *format, ...)
 {
 	va_list args;
 	char attic[1];
-	uint_t M, m;
+	uint32_t M, m;
 	char *b;
 
 	va_start(args, format);
