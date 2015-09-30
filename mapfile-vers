@@ -1,3 +1,4 @@
+/*
 #
 # CDDL HEADER START
 #
@@ -35,11 +36,9 @@
 #
 # MAPFILE HEADER END
 #
+*/
 
-$mapfile_version 2
-
-SYMBOL_VERSION SUNWprivate_1.1 {
-    global:
+SUNWprivate_1.1 {
 	uu_alt_exit;
 	uu_avl_create;
 	uu_avl_destroy;
@@ -116,6 +115,4 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	uu_warn;
 	uu_xdie;
 	uu_zalloc;
-    local:
-	*;
 };
