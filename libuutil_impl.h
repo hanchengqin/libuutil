@@ -27,8 +27,6 @@
 #ifndef	_LIBUUTIL_IMPL_H
 #define	_LIBUUTIL_IMPL_H
 
-#pragma ident	"%Z%%M%	%I%	%E% SMI"
-
 #include <libuutil.h>
 #include <pthread.h>
 
