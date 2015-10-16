@@ -840,7 +840,7 @@ void
 avl_swap(avl_tree_t *tree1, avl_tree_t *tree2)
 {
 	avl_node_t *temp_node;
-	ulong temp_numnodes;
+	u_long temp_numnodes;
 
 	temp_node = tree1->avl_root;
 	temp_numnodes = tree1->avl_numnodes;
@@ -878,7 +878,7 @@ avl_destroy(avl_tree_t *tree __unused)
 /*
  * Return the number of nodes in an AVL tree.
  */
-ulong
+u_long
 avl_numnodes(avl_tree_t *tree)
 {
 	return (tree->avl_numnodes);
