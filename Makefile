@@ -4,7 +4,8 @@
 
 LIB=		uutil
 SHLIB_MAJOR=	1
-SRCS=		uu_alloc.c \
+SRCS=		avl.c \
+		uu_alloc.c \
 		uu_avl.c \
 		uu_dprintf.c \
 		uu_ident.c \
@@ -22,5 +23,7 @@ SYMBOL_MAPS=	${.CURDIR}/mapfile-vers
 
 NOPROFILE=	yes
 NO_PROFILE=	yes
+
+.PATH:		${.CURDIR}/avl
 
 .include <bsd.lib.mk>
